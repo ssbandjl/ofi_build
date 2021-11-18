@@ -1,0 +1,16 @@
+git仓库:
+https://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@github.com/ssbandjl/ofi_build.git
+
+编译:
+cd /home/daos/docker/daos/build/external/debug/ofi
+./autogen.sh
+./configure --prefix=/opt/daos/prereq/debug/ofi --disable-efa --disable-psm3 --without-gdrcopy --enable-debug --disable-psm2 --disable-psm3
+make -j 1
+make install
+
+设置动态链接库
+目录 可执行文件1 可执行文件2 ...
+patchelf --set-rpath '$ORIGIN:/opt/daos/prereq/debug/ofi/lib' /opt/daos/prereq/debug/ofi/lib/libfabric.so
+
+
+
